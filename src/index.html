@@ -1,0 +1,33 @@
+<html>
+  <head>
+    <title>Service Worker Example</title>
+  </head>
+  <body>
+    <h1>Original response</h1>
+    <p>If you're seeing this response, then:</p>
+    <ul>
+      <li>This is your first visit and the service worker was not installed yet.</li>
+      <li>This is a subsequent visit and:</li>
+      <ul>
+        <li>service workers are not supported by your browser.</li>
+        <li>you have Javascript disabled so the service worker could not be installed.</li>
+        <li>the service worker was blocked from installation or otherwise failed.</li>
+        <li>the service worker has since been forcibly unregistered.</li>
+      </ul>
+    </ul>
+    <p><i>NB: Whether the origin server was actually hit to get this response is another question entirely (due to caching etc).</i></p>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function() {
+        navigator.serviceWorker.register('/sw.js').then(function(registration) {
+          // Registration was successful
+          console.log('ServiceWorker registration successful with scope: ', registration.scope);
+        }, function(err) {
+          // registration failed :(
+          console.log('ServiceWorker registration failed: ', err);
+        });
+      });
+    }
+  </script>
+  </body>
+</html>
