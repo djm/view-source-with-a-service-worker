@@ -18,7 +18,6 @@ var modifiedResponse = `
 
 `
 self.addEventListener('fetch', function(event) {
-  console.log(event.request);
   var path = event.request.url.replace(self.location.origin, '');
   if (path == '/') {
     event.respondWith(new Response(modifiedResponse, {
